@@ -1,0 +1,189 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--foreground);
+  --color-popover: var(--card);
+  --color-popover-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--primary);
+  --color-primary: #2d6a4f;
+  --color-coral: #ff6b6b;
+  --color-coral-hover: #ff8080;
+  --color-cream: #fefae0;
+  --color-forest: #0a1f0a;
+  --color-sage: #52b788;
+  --color-charcoal: #1b1b1b;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --shadow-soft: 0 8px 32px -16px rgb(36 62 43 / 16%);
+  --shadow-lift: 0 16px 40px -18px rgb(36 62 43 / 25%);
+}
+
+/* Light mode is intentional. Tokens follow shadcn/ui's component conventions. */
+:root {
+  color-scheme: light;
+  --radius: 0.75rem;
+  --background: #fefae0;
+  --foreground: #1b1b1b;
+  --card: rgb(255 254 249 / 94%);
+  --primary: #2d6a4f;
+  --primary-foreground: #ffffff;
+  --secondary: #edf1e5;
+  --secondary-foreground: #2d6a4f;
+  --muted: #f1f2e9;
+  --muted-foreground: #60695f;
+  --accent: #ff6b6b;
+  --destructive: #b42318;
+  --border: #e2e6d9;
+  --input: #d9dfd2;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  html {
+    scroll-behavior: auto;
+    scroll-padding-top: 100px;
+  }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    -webkit-font-smoothing: antialiased;
+  }
+  button,
+  a,
+  input,
+  textarea,
+  select {
+    -webkit-tap-highlight-color: transparent;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: not-allowed;
+  }
+  ::selection {
+    background: #c7ddbd;
+    color: #173e2c;
+  }
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 4px;
+  }
+  input:focus-visible,
+  textarea:focus-visible {
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@utility container-page {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 20px;
+  @media (min-width: 640px) {
+    padding-inline: 32px;
+  }
+  @media (min-width: 1024px) {
+    padding-inline: 48px;
+  }
+}
+
+@utility section-space {
+  padding-block: 72px;
+  @media (min-width: 768px) {
+    padding-block: 100px;
+  }
+}
+@utility eyebrow {
+  font-size: 11px;
+  line-height: 1.5;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+@utility section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.875rem, 3.2vw, 2.625rem);
+  font-weight: 600;
+  line-height: 1.22;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+@utility card-interactive {
+  transition:
+    box-shadow 200ms ease,
+    border-color 200ms ease,
+    transform 200ms ease;
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lift);
+    border-color: #b9cdb3;
+  }
+}
+
+/* A tiny, static texture gives the map depth without a raster image or network request. */
+@utility map-texture {
+  background-image: radial-gradient(#63826322 0.75px, transparent 0.75px);
+  background-size: 8px 8px;
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #52b788 #0a1f0a;
+}
+
+html::-webkit-scrollbar {
+  width: 10px;
+}
+
+html::-webkit-scrollbar-track {
+  background: #0a1f0a;
+}
+
+html::-webkit-scrollbar-thumb {
+  border: 2px solid #0a1f0a;
+  border-radius: 999px;
+  background: #52b788;
+}
+
+::selection {
+  background: #52b788;
+  color: #0a1f0a;
+}
+
+canvas[aria-hidden="true"] {
+  pointer-events: none;
+}
